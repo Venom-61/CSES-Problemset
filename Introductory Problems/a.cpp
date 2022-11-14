@@ -16,4 +16,6 @@ int main() {
 			n = 3 * n + 1;
 	}
 	cout << 1 << "\n";
+
+    return 0;
 }
