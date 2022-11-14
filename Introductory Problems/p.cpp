@@ -2,6 +2,8 @@
 using namespace std;
  
 typedef long long ll;
+
+// Apple Division
  
 int n;
 vector<int> apples;
