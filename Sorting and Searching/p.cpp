@@ -1,9 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// Policy-based data structures
+
+#include<ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+
+typedef tree<int, null_type, less<int>, rb_tree_tag,tree_order_statistics_node_update> indexed_set;
 typedef long long ll;
 
-// Josephus Problem I
+// Josephus Problem II
 
 int32_t main() {
     ios_base::sync_with_stdio(false);
@@ -11,15 +17,17 @@ int32_t main() {
     
     int n;
     cin >> n;
-    int a = 1, b = 0;
-    while(n > 0) {
-        for(int i = 2; i <= n; i += 2) {
-            cout << a*i + b << " ";
-        }
-        if(n & 1) cout << a + b << " ", b += a;
-        else b -= a;
-        a <<= 1;
-        n >>= 1;
+    indexed_set s; 
+    for(int i = 1; i <= n; i++)
+        s.insert(i);
+
+    int idx = 1;
+    while(s.size()) {
+        idx %= s.size();
+        int x = *s.find_by_order(idx);
+        s.erase(x);
+        cout << x << " ";
+        idx++;
     }
 
     return 0;
