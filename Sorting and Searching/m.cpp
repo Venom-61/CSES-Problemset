@@ -11,24 +11,18 @@ int32_t main() {
     
     int n;
     cin >> n;
-    map<int, int> mp;
+    vector<ll> a(n + 1);
+    for(int i = 1; i <= n; i++) 
+        cin >> a[i];
 
+    map<int, int> mp;
     int l = 1, ans = 0;
     for(int r = 1; r <= n; r++) {
-        int x;
-        cin >> x;
-        if(mp[x]) {
-            ans = max(ans, r-l);
-            l = max(l, mp[x] + 1);
-            mp[x] = r;
-        } else {
-            mp[x] = r;
-            ans = max(ans, r-l+1);
-        }
+        l = max(mp[a[r]], l);
+        ans = max(ans, r - l + 1);
+        mp[a[r]] = r + 1;
     }
 
-    ans = max(n-l+1, ans);
     cout << ans << "\n";
-
     return 0;
 }
