@@ -11,17 +11,18 @@ int32_t main() {
     
     int n;
     cin >> n;
-    vector<int> v(n + 1);
+    vector<int> ind(n + 1);
     for(int i = 1; i <= n; i++) {
         int x;
         cin >> x;
-        v[x] = i;
+        ind[x] = i;
     }
 
-    int ans = 1;
-    for(int i = 2; i <= n; i++) {
-        if(v[i - 1] > v[i])
+    int ans = 1, l = 1;
+    for(int i = 1; i <= n; i++) {
+        if(l > ind[i])
             ans++;
+        l = ind[i];
     }
     cout << ans << "\n";
 
